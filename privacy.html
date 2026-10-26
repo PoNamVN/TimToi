@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Tim Toi Studio</title>
+  <meta name="description" content="Privacy Policy for Tim Toi Studio. Learn how your data, TikTok OAuth tokens, and video assets are handled locally and securely on your device.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Privacy Policy — Tim Toi Studio">
+  <meta property="og:description" content="Transparent privacy policy for Tim Toi Studio desktop application and TikTok API integration.">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">T</div>
+        <span>Tim Toi Studio</span>
+        <span class="brand-badge">Privacy</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#capabilities">Capabilities</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html" class="active">Privacy Policy</a></li>
+        </ul>
+      </nav>
+      <a href="terms.html" class="nav-cta">
+        <span>Terms of Service</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="legal-wrapper">
+      <header class="legal-header">
+        <h1>Privacy Policy</h1>
+        <div class="legal-meta">
+          <span>Effective Date: <strong>October 26, 2026</strong></span>
+          <span>&bull;</span>
+          <span>Last Updated: <strong>October 26, 2026</strong></span>
+          <span>&bull;</span>
+          <span class="legal-badge">Local-First Desktop Application</span>
+        </div>
+      </header>
+
+      <div class="legal-content">
+        <div class="callout-box">
+          <p>
+            <strong>Core Privacy Principle:</strong> Tim Toi Studio is a local Windows desktop application, NOT a software-as-a-service (SaaS) or cloud web service. All authentication credentials, access tokens, production scripts, audio voiceovers, and rendered video files reside strictly on your local computer. We do not operate any external user tracking server or remote credential database.
+          </p>
+        </div>
+
+        <h2>1. Who We Are</h2>
+        <p>
+          Tim Toi Studio is an independent educational video creation tool developed by <strong>Po Nam</strong> ("Developer"), based in Vietnam. This Privacy Policy explains how our software interacts with external platforms (specifically TikTok and YouTube) and handles user data during video creation and publishing.
+        </p>
+
+        <h2>2. TikTok OAuth 2.0 Authorization &amp; Data Requested</h2>
+        <p>
+          To enable video publishing capabilities directly to TikTok, Tim Toi Studio implements the official <strong>TikTok Content Posting API</strong> using an OAuth 2.0 PKCE (Proof Key for Code Exchange) flow designed for native desktop applications.
+        </p>
+
+        <h3>A. Requested Scopes</h3>
+        <ul>
+          <li>
+            <strong><code>user.info.basic</code></strong>: Used exclusively to retrieve your public TikTok display name, avatar URL, and open_id. This information is displayed in the local desktop review console to help the creator confirm which TikTok profile is currently linked.
+          </li>
+          <li>
+            <strong><code>video.upload</code></strong>: Used to upload the finalized MP4 video file to the creator's TikTok <em>Inbox / Drafts</em> folder. Uploading to Inbox does not make content public; it allows the creator to inspect and finalize publishing within the official TikTok mobile app.
+          </li>
+          <li>
+            <strong><code>video.publish</code></strong>: (Only when approved by platform review and enabled by the creator): Used to publish videos directly as scheduled or public posts, accompanied by the mandatory <code>is_aigc: true</code> compliance tag.
+          </li>
+        </ul>
+
+        <h3>B. What We NEVER Access</h3>
+        <p>
+          Tim Toi Studio does not request, collect, or store:
+        </p>
+        <ul>
+          <li>Your TikTok account password or login credentials.</li>
+          <li>Your direct messages, chat logs, or comments.</li>
+          <li>Your following/followers list or personal contacts.</li>
+          <li>Your viewing history, search history, or browsing habits.</li>
+          <li>Payment, credit card, or financial details.</li>
+        </ul>
+
+        <h2>3. Local Storage of Authentication Tokens</h2>
+        <p>
+          When you grant authorization through the official TikTok login page:
+        </p>
+        <ul>
+          <li>The authorization code is exchanged directly between your local PC and <code>https://open.tiktokapis.com</code> over TLS/HTTPS.</li>
+          <li>The returned <code>access_token</code>, <code>refresh_token</code>, and expiration timestamp are saved locally in the project secrets directory: <code>secrets/tiktok_token.json</code>.</li>
+          <li><strong>No External Server Transfer:</strong> These tokens are NEVER transmitted to, stored on, or shared with any remote web server, cloud backend, or third party.</li>
+          <li>Tokens are utilized solely by your local workstation to execute authorized API requests on your command.</li>
+        </ul>
+
+        <h2>4. Video Production &amp; Content Data Handling</h2>
+        <p>
+          All stages of video production occur on your local machine:
+        </p>
+        <ul>
+          <li><strong>Audio Narration:</strong> Voice synthesis is performed locally on-device using the VieNeu-TTS neural model. No spoken audio or voice samples are uploaded to external speech servers.</li>
+          <li><strong>Video Rendering:</strong> Video compositing and FFmpeg rendering are completed locally on your CPU/GPU.</li>
+          <li><strong>Transmission Gate:</strong> No video file or metadata is uploaded to TikTok or YouTube until you explicitly trigger publishing via the interactive Telegram bot or local CLI, with verified cryptographic SHA-256 hash matching.</li>
+        </ul>
+
+        <h2>5. Third-Party Services Used</h2>
+        <p>
+          The Software connects directly to the following official third-party APIs:
+        </p>
+        <ul>
+          <li>
+            <strong>TikTok Content Posting API (ByteDance Ltd.):</strong> For creator authentication, querying creator account capability, and uploading videos to Inbox or Direct Post. Governed by the <a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener">TikTok Privacy Policy</a>.
+          </li>
+          <li>
+            <strong>YouTube Data API v3 (Google LLC):</strong> For YouTube Shorts upload and publishing verification. Governed by the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.
+          </li>
+          <li>
+            <strong>Google Fonts (Google LLC):</strong> This public static documentation website loads typography stylesheets from Google Fonts (<code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code>). When visiting these pages, your web browser requests font files directly from Google, which may log standard HTTP request metadata in accordance with the Google Privacy Policy.
+          </li>
+          <li>
+            <strong>Google Gemini API:</strong> Utilized by the local research and scripting agents for scientific literature summarization. No personal account credentials or private tokens are sent to Gemini.
+          </li>
+          <li>
+            <strong>Telegram Bot API:</strong> Utilized exclusively as a private human-in-the-loop review interface between the local production daemon and the authorized creator chat ID.
+          </li>
+        </ul>
+
+        <h2>6. Data Retention and How to Delete Your Data</h2>
+        <p>
+          Because all data is stored locally on your machine, you have complete control over data retention and deletion at all times:
+        </p>
+
+        <h3>A. Immediate Local Token Deletion</h3>
+        <p>
+          You can immediately purge all stored tokens, credentials, and cached creator profile data by deleting the token files from your local workstation:
+        </p>
+        <ul>
+          <li>Delete <code>secrets/tiktok_token.json</code> to remove all stored TikTok session keys.</li>
+          <li>Delete <code>secrets/youtube_token.json</code> to remove all stored YouTube Google session keys.</li>
+        </ul>
+
+        <h3>B. Revoking Access Directly via TikTok</h3>
+        <p>
+          You can revoke Tim Toi Studio's authorization at any moment directly from within your TikTok app:
+        </p>
+        <ol>
+          <li>Open the <strong>TikTok</strong> mobile application.</li>
+          <li>Navigate to your <strong>Profile</strong> &rarr; tap the menu icon (&#9776;) &rarr; select <strong>Settings and privacy</strong>.</li>
+          <li>Tap <strong>Security</strong> (or <em>Security and permissions</em>) &rarr; tap <strong>Manage app permissions</strong>.</li>
+          <li>Locate <strong>Tim Toi Studio</strong> and tap <strong>Remove access</strong>.</li>
+        </ol>
+        <p>
+          Once revoked, all previously issued access tokens will become immediately invalid.
+        </p>
+
+        <h3>C. Requesting Deletion Assistance</h3>
+        <p>
+          Because we do not operate a remote user database, we do not store your data on external servers. However, if you have any questions or require confirmation regarding data deletion, you may email us directly at <a href="mailto:phanlephuongnam4@gmail.com">phanlephuongnam4@gmail.com</a> and we will assist you within 48 hours.
+        </p>
+
+        <h2>7. Children's Privacy</h2>
+        <p>
+          Tim Toi Studio is a developer and creator production workstation tool intended for adults and teenage science creators of legal age to hold TikTok and YouTube developer accounts. We do not knowingly collect personal data from children under the age of 13.
+        </p>
+
+        <h2>8. Updates to This Privacy Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time to maintain compliance with TikTok Developer Policy, YouTube API Terms, or relevant data privacy standards. Any changes will be posted directly to this public webpage with an updated "Last Updated" date.
+        </p>
+
+        <h2>9. Contact Us</h2>
+        <p>
+          For any privacy questions, data handling inquiries, or security disclosures, please contact the developer:
+        </p>
+        <p>
+          <strong>Developer:</strong> Po Nam<br>
+          <strong>Email:</strong> <a href="mailto:phanlephuongnam4@gmail.com">phanlephuongnam4@gmail.com</a><br>
+          <strong>YouTube Channel:</strong> <a href="https://www.youtube.com/@ponamtimtoi" target="_blank" rel="noopener">Tìm Tòi (@ponamtimtoi)</a><br>
+          <strong>GitHub Profile:</strong> <a href="https://github.com/PoNamVN" target="_blank" rel="noopener">github.com/PoNamVN</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Tim Toi Studio. Independent Creator Software Project.
+        </div>
+        <div class="footer-links-inline">
+          <a href="index.html">Home</a>
+          <span>&bull;</span>
+          <a href="terms.html">Terms of Service</a>
+          <span>&bull;</span>
+          <a href="privacy.html">Privacy Policy</a>
+          <span>&bull;</span>
+          <a href="mailto:phanlephuongnam4@gmail.com">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
